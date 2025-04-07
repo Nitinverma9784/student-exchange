@@ -2,6 +2,9 @@ import conf from '../conf/conf'
 import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
+    createUserProfile($id, arg1) {
+      throw new Error("Method not implemented.");
+    }
     client = new Client()
     account;
     constructor(){

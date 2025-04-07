@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Upload, X, Plus, ArrowLeft } from "lucide-react"
+import { X, Plus, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export default function UploadPage() {
@@ -141,19 +141,54 @@ export default function UploadPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="file">Upload File</Label>
-                <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2">
-                  <Upload className="h-8 w-8 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground text-center">
-                    Drag and drop your file here, or click to browse
-                  </p>
-                  <p className="text-xs text-muted-foreground text-center">
-                    Supports PDF, DOCX, PPTX, MP4, and more (max 50MB)
-                  </p>
-                  <Input id="file" type="file" className="hidden" />
-                  <Button variant="outline" size="sm" onClick={() => document.getElementById("file")?.click()}>
-                    Browse Files
-                  </Button>
+                <Label htmlFor="drive-link">Enter Google Drive Link</Label>
+                <div className="border rounded-lg p-6 space-y-4">
+                  <div className="flex items-center gap-2 text-brand-600">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-link"
+                    >
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                    <span className="font-medium">Google Drive Link</span>
+                  </div>
+                  <Input id="drive-link" placeholder="https://drive.google.com/file/d/..." />
+                  <div className="text-sm text-muted-foreground space-y-2">
+                    <p>Please ensure your Google Drive link is:</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>Set to "Anyone with the link can view"</li>
+                      <li>Shared as a direct file link (not a folder)</li>
+                      <li>Not password protected</li>
+                    </ul>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-info"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>Supported platforms: Google Drive, OneDrive, Dropbox</span>
+                  </div>
                 </div>
               </div>
             </CardContent>
