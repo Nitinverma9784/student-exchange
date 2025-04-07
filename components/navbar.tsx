@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -12,11 +12,51 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Menu, X, BookOpen } from "lucide-react"
+import { Menu, X, BookOpen,User } from "lucide-react"
+import authService from "../src/appwrite/auth"
+import { useRouter } from "next/navigation"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // This would be determined by your auth state
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  interface UserData {
+    name?: string
+    email?: string
+  }
+
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const user = await authService.getCurrentUser()
+        if (user) {
+          setIsLoggedIn(true)
+          setUserData(user)
+        } else {
+          setIsLoggedIn(false)
+          setUserData(null)
+        }
+      } catch (error) {
+        setIsLoggedIn(false)
+        setUserData(null)
+      }
+    }
+
+    checkAuthStatus()
+  }, [])
+
+  const handleLogout = async () => {
+    try {
+      await authService.logout()
+      setIsLoggedIn(false)
+      setUserData(null)
+      router.push("/login")
+    } catch (error) {
+      console.error("Logout failed:", error)
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -42,18 +82,19 @@ export default function Navbar() {
           {isLoggedIn ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg" alt="@user" />
-                    <AvatarFallback>U</AvatarFallback>
-                  </Avatar>
+                <Button variant="ghost" className="relative h-8 w-8 ">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 border border-gray-200">
+  <User className="h-9 w-9 text-gray-600" />
+</div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">User</p>
-                    <p className="text-xs leading-none text-muted-foreground">user@example.com</p>
+                    <p className="text-sm font-medium leading-none">{userData?.name || 'User'}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {userData?.email || 'user@example.com'}
+                    </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -79,7 +120,7 @@ export default function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <button className="w-full text-left" onClick={() => setIsLoggedIn(false)}>
+                  <button className="w-full text-left" onClick={handleLogout}>
                     Log out
                   </button>
                 </DropdownMenuItem>
@@ -134,7 +175,7 @@ export default function Navbar() {
                   <button
                     className="text-sm font-medium text-left"
                     onClick={() => {
-                      setIsLoggedIn(false)
+                      handleLogout()
                       setIsMenuOpen(false)
                     }}
                   >
@@ -162,4 +203,3 @@ export default function Navbar() {
     </header>
   )
 }
-
