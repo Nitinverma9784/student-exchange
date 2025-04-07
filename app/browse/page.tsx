@@ -105,9 +105,13 @@ export default function BrowsePage() {
               <div className="text-sm text-muted-foreground">
                 Uploaded by <span className="font-medium text-foreground">Alex J.</span>
               </div>
-              <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
+              <a href="https://drive.google.com/file/d/1oibMwgglgL8UvE-r-iqIBxbpZALbyosz/view?usp=drivesdk"
+              target="_blank">
+       <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
                 View
               </Button>
+              </a>
+       
             </CardFooter>
           </Card>
 
@@ -135,9 +139,13 @@ export default function BrowsePage() {
               <div className="text-sm text-muted-foreground">
                 Uploaded by <span className="font-medium text-foreground">Maria L.</span>
               </div>
-              <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
+              <a href="https://drive.google.com/file/d/1okJAqzsP4b7OAef7CZIBxC7LvuCliWEi/view?usp=drivesdk"
+              target="_blank">
+   <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
                 View
               </Button>
+              </a>
+           
             </CardFooter>
           </Card>
 
@@ -165,9 +173,14 @@ export default function BrowsePage() {
               <div className="text-sm text-muted-foreground">
                 Uploaded by <span className="font-medium text-foreground">James T.</span>
               </div>
-              <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
+
+              <a href="https://drive.google.com/file/d/1osiDMZvFd_PBwmusGv3weQmWX9sVIamO/view?usp=drivesdk"
+              target="_blank">
+ <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
                 View
               </Button>
+              </a>
+             
             </CardFooter>
           </Card>
 
@@ -195,9 +208,14 @@ export default function BrowsePage() {
               <div className="text-sm text-muted-foreground">
                 Uploaded by <span className="font-medium text-foreground">Sarah K.</span>
               </div>
+              <a href="https://drive.google.com/file/d/1oxOSRb8Cyz_EsWnUd0dZkMsp3pW72Wri/view?usp=drivesdk"
+              target="_blank"
+              >
               <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
                 View
               </Button>
+              </a>
+           
             </CardFooter>
           </Card>
 
