@@ -11,6 +11,8 @@ import { BookOpen } from "lucide-react"
 import authService from "../../src/appwrite/auth"
 import { Checkbox } from "@/components/ui/checkbox"
 import conf from "../../src/conf/conf"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function SignupPage() {
   const [step, setStep] = useState(1)
@@ -21,7 +23,13 @@ export default function SignupPage() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    institution: "",
+    degree: "",
+    field: "",
+    year: "",
+    bio: "",
+    terms: false
   })
   const router = useRouter()
 
@@ -54,9 +62,22 @@ export default function SignupPage() {
     }))
   }
 
+  const handleSelectChange = (id: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }))
+  }
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     setError("")
+    
+    // Final validation
+    if (!formData.terms) {
+      setError("You must agree to the terms and conditions")
+      return
+    }
     
     try {
       setLoading(true)
@@ -108,22 +129,14 @@ export default function SignupPage() {
               >
                 2
               </div>
-              <div className={`h-0.5 flex-1 ${step >= 3 ? "bg-orange-500" : "bg-gray-200"}`}></div>
-              <div
-                className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 3 ? "bg-orange-500 text-white" : "bg-gray-200 text-gray-500"}`}
-              >
-                3
-              </div>
             </div>
             <CardTitle>
               {step === 1 && "Account Information"}
               {step === 2 && "Academic Profile"}
-              {step === 3 && "Preferences"}
             </CardTitle>
             <CardDescription>
               {step === 1 && "Enter your basic account details"}
               {step === 2 && "Tell us about your academic background"}
-              {step === 3 && "Set your preferences for the platform"}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -192,18 +205,81 @@ export default function SignupPage() {
             )}
 
             {step === 2 && (
-              <div className="text-center py-8">
-                <p>Academic profile step (to be implemented)</p>
-              </div>
-            )}
-
-            {step === 3 && (
-              <div className="text-center py-8">
-                <p>Preferences step (to be implemented)</p>
-                <div className="flex items-start space-x-2 pt-4 justify-center">
+              <>
+                <div className="space-y-2">
+                  <Label htmlFor="institution">Educational Institution</Label>
+                  <Input 
+                    id="institution" 
+                    placeholder="University of Example" 
+                    value={formData.institution}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="degree">Degree Program</Label>
+                  <Select onValueChange={(value) => handleSelectChange("degree", value)}>
+                    <SelectTrigger id="degree">
+                      <SelectValue placeholder="Select your degree" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="bachelor">Bachelor's Degree</SelectItem>
+                      <SelectItem value="master">Master's Degree</SelectItem>
+                      <SelectItem value="phd">PhD</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="field">Field of Study</Label>
+                  <Select onValueChange={(value) => handleSelectChange("field", value)}>
+                    <SelectTrigger id="field">
+                      <SelectValue placeholder="Select your field" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="computer-science">Computer Science</SelectItem>
+                      <SelectItem value="engineering">Engineering</SelectItem>
+                      <SelectItem value="business">Business</SelectItem>
+                      <SelectItem value="medicine">Medicine</SelectItem>
+                      <SelectItem value="arts">Arts</SelectItem>
+                      <SelectItem value="law">Law</SelectItem>
+                      <SelectItem value="mathematics">Mathematics</SelectItem>
+                      <SelectItem value="physics">Physics</SelectItem>
+                      <SelectItem value="chemistry">Chemistry</SelectItem>
+                      <SelectItem value="biology">Biology</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="year">Year of Study</Label>
+                  <Select onValueChange={(value) => handleSelectChange("year", value)}>
+                    <SelectTrigger id="year">
+                      <SelectValue placeholder="Select your year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">1st Year</SelectItem>
+                      <SelectItem value="2">2nd Year</SelectItem>
+                      <SelectItem value="3">3rd Year</SelectItem>
+                      <SelectItem value="4">4th Year</SelectItem>
+                      <SelectItem value="5+">5+ Year</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="bio">Short Bio</Label>
+                  <Textarea
+                    id="bio"
+                    placeholder="Tell us a bit about yourself and your academic interests"
+                    className="min-h-[100px]"
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex items-start space-x-2 pt-4">
                   <Checkbox 
                     id="terms" 
-                    required
+                    checked={formData.terms}
+                    onCheckedChange={(checked) => setFormData(prev => ({...prev, terms: Boolean(checked)}))}
                   />
                   <div className="grid gap-1.5 leading-none">
                     <Label htmlFor="terms" className="font-normal text-sm">
@@ -211,7 +287,7 @@ export default function SignupPage() {
                     </Label>
                   </div>
                 </div>
-              </div>
+              </>
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
@@ -225,7 +301,7 @@ export default function SignupPage() {
               </Button>
             )}
 
-            {step < 3 ? (
+            {step < 2 ? (
               <Button 
                 type="button" 
                 className="bg-orange-500 hover:bg-orange-600" 
