@@ -8,7 +8,7 @@ export default function LeaderboardPage() {
   return (
     <div className="container py-10">
       <div className="flex flex-col items-center mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-purple-600">Leaderboard</h1>
+        <h1 className="text-3xl font-bold mb-2 text-BLACK">Leaderboard</h1>
         <p className="text-muted-foreground text-center max-w-2xl">
           Recognizing our top contributors who help make education more accessible for everyone. Earn points by sharing
           quality materials and receiving positive reviews!

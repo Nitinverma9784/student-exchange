@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-brand-500">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#FFB300]">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -220,11 +220,11 @@ export default function Home() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div className="aspect-video relative bg-gray-100">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
+                  src="https://5.imimg.com/data5/SELLER/PDFImage/2024/6/425549527/DG/KC/XR/9872455/multilingual-seo-services-500x500.png"
                   alt="Computer Science notes"
                   width={400}
                   height={200}
-                  className="object-cover w-full h-full"
+                  className="object-center w-full h-full"
                 />
               </div>
               <div className="p-6">
@@ -244,9 +244,16 @@ export default function Home() {
                     <span className="text-sm font-medium">4.9</span>
                     <span className="text-xs text-muted-foreground">(128 reviews)</span>
                   </div>
-                  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
-                    View
-                  </Button>
+                  <a
+  href="https://drive.google.com/file/d/1JDS740pjwsxURrEXxvD5RxBUpO-cLnzN/view?usp=drivesdk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
+    View
+  </Button>
+</a>
+
                 </div>
               </div>
             </div>
@@ -255,7 +262,7 @@ export default function Home() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div className="aspect-video relative bg-gray-100">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
+                  src="https://media.istockphoto.com/id/1346294889/photo/web-designing.jpg?s=1024x1024&w=is&k=20&c=4PQc-vgT6h8sQDYKUXB0uKWbseuQkDSqAvxm_zsEitM="
                   alt="UX/UI Design"
                   width={400}
                   height={200}
@@ -277,9 +284,15 @@ export default function Home() {
                     <span className="text-sm font-medium">4.8</span>
                     <span className="text-xs text-muted-foreground">(96 reviews)</span>
                   </div>
-                  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
-                    View
-                  </Button>
+                  <a
+  href="https://drive.google.com/file/d/1JJUPSq8XvNEUDnAqm-f0cFBYVz0_hYMa/view?usp=drivesdk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
+    View
+  </Button>
+</a>
                 </div>
               </div>
             </div>
@@ -288,7 +301,7 @@ export default function Home() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div className="aspect-video relative bg-gray-100">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
+                  src="https://media.istockphoto.com/id/1195696110/photo/hands-using-mobile-payments-digital-marketing-banking-network-online-shopping-and-icon.jpg?s=1024x1024&w=is&k=20&c=9FxKYaY4DQXZ9H0oLNlF5BesY0ga0y5FmfbN4kg3jjw="
                   alt="Mobile App Development"
                   width={400}
                   height={200}
@@ -300,7 +313,7 @@ export default function Home() {
                   <span className="text-xs font-medium bg-brand-100 text-brand-600 px-2 py-1 rounded-full">
                     Development
                   </span>
-                  <span className="text-xs text-muted-foreground">By Michael J.</span>
+                  <span className="text-xs text-muted-foreground">B.Deepthi Reddy</span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Mobile App Development</h3>
                 <p className="text-muted-foreground mb-4">
@@ -312,9 +325,15 @@ export default function Home() {
                     <span className="text-sm font-medium">4.7</span>
                     <span className="text-xs text-muted-foreground">(84 reviews)</span>
                   </div>
-                  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
-                    View
-                  </Button>
+                  <a
+  href="https://drive.google.com/file/d/1Jce0y3eH2OSgcZm_Iwoph0hgEqno-2Oa/view?usp=drivesdk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button size="sm" className="bg-brand-500 hover:bg-brand-600 text-white">
+    View
+  </Button>
+</a>
                 </div>
               </div>
             </div>
@@ -389,7 +408,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 bg-brand-500 text-white">
+      <section className="w-full py-12 md:py-24 bg-[#FFB300] text-white">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
