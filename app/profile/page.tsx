@@ -11,13 +11,13 @@ import Link from "next/link"
 export default function ProfilePage() {
   // Mock user data - in a real app this would come from your auth/database
   const user = {
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
+    name: "Nitin Verma",
+    email: "nitinverma9784@gmail.com",
     avatar: "/placeholder.svg",
-    institution: "University of Example",
+    institution: "Sir Padampad Singhania University",
     degree: "Bachelor's Degree",
     field: "Computer Science",
-    year: "3rd Year",
+    year: "2nd Year",
     bio: "Computer Science student passionate about web development and AI. I love sharing my notes and helping fellow students.",
     points: 750,
     nextLevel: 1000,
